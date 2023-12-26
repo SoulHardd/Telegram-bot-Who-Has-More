@@ -15,7 +15,8 @@ async def game_callback(callback: types.CallbackQuery):
     action = callback.data.split("_")[1]
     await callback.message.edit_text(f"Рейтинг фильма\n"
                                      f'"{filmsdatabase.get_film_name(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id) + 1])}"'
-                                     f" - # {filmsdatabase.get_film_rating(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)+1])}")
+                                     f" - {userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id) + 1]}"
+                                     f"\n(🔝{filmsdatabase.get_film_rating(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)+1])})")
     if action == "left":
         if (int(userdatabase.get_film_list
                 (callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])
@@ -65,7 +66,8 @@ async def next_turn(callback: types.CallbackQuery):
     await callback.message.answer_media_group(media=album_builder.build())
     await callback.message.answer(f"Рейтинг фильма\n"
                                   f'"{filmsdatabase.get_film_name(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])}"'
-                                  f" - # {filmsdatabase.get_film_rating(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])}")
+                                  f" - {userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)]}"
+                                  f"\n(🔝{filmsdatabase.get_film_rating(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])})")
     await callback.message.answer(f"Рейтинг фильма\n"
                                   f'"{filmsdatabase.get_film_name(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)+1])}"'
                                   f"\nбольше или меньше?",

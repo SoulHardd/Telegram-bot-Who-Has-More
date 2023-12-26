@@ -28,7 +28,8 @@ async def start_game(callback: types.CallbackQuery):
     await callback.message.answer_media_group(media=album_builder.build())
     await callback.message.answer(f"Рейтинг фильма\n"
                                   f'"{filmsdatabase.get_film_name(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])}"'
-                                  f" - # {filmsdatabase.get_film_rating(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])}")
+                                  f" - {userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)]}"
+                                  f"\n(🔝{filmsdatabase.get_film_rating(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id)])})")
     await callback.message.answer(f"Рейтинг фильма\n"
                                   f'"{filmsdatabase.get_film_name(userdatabase.get_film_list(callback.from_user.id)[userdatabase.get_current_counter(callback.from_user.id) + 1])}"'
                                   f"\nбольше или меньше?",
